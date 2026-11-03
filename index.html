@@ -5,107 +5,225 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Matemático Interactivo</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 20px auto;
-            padding: 10px;
-            color: #222;
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --accent-green: #34d399;
+            --accent-green-bg: rgba(52, 211, 153, 0.1);
+            --accent-red: #f87171;
+            --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.15);
         }
 
-        h1 {
-            color: #1a5276;
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 20px;
+            color: var(--text-main);
+            background-color: var(--bg-base);
+            line-height: 1.6;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1#titulo {
+            color: var(--primary);
             cursor: pointer;
-            border-bottom: 2px solid #1a5276;
-            padding-bottom: 5px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            transition: all 0.3s ease;
+            user-select: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h1#titulo:hover {
+            color: var(--primary-hover);
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
         }
 
         .subtitulo {
-            font-size: 18px;
-            color: #2980b9;
-            margin-top: 25px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
         }
 
         p {
-            font-size: 16px;
-            background-color: #f2f2f2;
-            padding: 10px;
-            border-radius: 4px;
+            font-size: 1rem;
+            background-color: var(--bg-card);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        p[onclick] {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        p[onclick]:hover {
+            background-color: var(--bg-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+            color: var(--primary-hover);
         }
 
         /* Lista de entradas cargadas dinámicamente */
         #lista-entradas {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
 
         #lista-entradas li {
-            background-color: #fafafa;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 12px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #lista-entradas li::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 4px;
+            background-color: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         #lista-entradas li:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-4px) scale(1.005);
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+            border-color: var(--primary);
+        }
+
+        #lista-entradas li:hover::before {
+            opacity: 1;
         }
 
         #lista-entradas a {
-            color: #1a5276;
+            color: var(--primary);
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 700;
+            transition: color 0.2s ease;
         }
 
         #lista-entradas a:hover {
-            color: #2980b9;
-            text-decoration: underline;
+            color: var(--primary-hover);
         }
 
         .fecha-post {
             display: inline-block;
-            font-size: 12px;
-            color: #7f8c8d;
-            margin-left: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background-color: #0f172a;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            border: 1px solid var(--border-color);
         }
 
         .resumen-post {
-            margin: 8px 0 0 0;
+            margin: 10px 0 0 0;
             background-color: transparent;
             padding: 0;
-            font-size: 14px;
-            color: #555;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border: none;
+            box-shadow: none;
+            line-height: 1.5;
         }
 
         /* Clases auxiliares para elementos interactivos */
         ul.interactivo {
-            background-color: #fafafa;
-            padding: 15px 30px;
-            border: 1px solid #ddd;
+            background-color: var(--bg-card);
+            padding: 12px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            list-style: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         ul.interactivo li {
-            margin: 5px 0;
+            margin: 8px 0;
             cursor: pointer;
-            padding: 4px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            user-select: none;
+            color: #e2e8f0;
+        }
+
+        ul.interactivo li:hover {
+            background-color: var(--bg-hover);
+            border-color: var(--border-color);
+            transform: translateX(6px);
+            color: var(--text-main);
         }
 
         .oculto {
-            display: none;
+            display: none !important;
         }
 
         .resaltado {
-            background-color: #d4efdf;
-            color: #196f3d;
+            background-color: var(--accent-green-bg) !important;
+            color: var(--accent-green) !important;
+            border-color: rgba(52, 211, 153, 0.3) !important;
+            font-weight: 600;
+            transform: scale(1.01);
         }
 
         .cambio-color {
-            color: #c0392b;
+            color: var(--accent-red) !important;
+            border-bottom-color: var(--accent-red) !important;
+            animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
         }
     </style>
 </head>
@@ -120,15 +238,16 @@
 
     <h2 class="subtitulo">Recursos y Conceptos Básicos</h2>
 
-    <p onclick="alternarLista('conceptos')" style="cursor: pointer;">
-        Conceptos Rápidos (Haz clic para mostrar u ocultar)
+    <p onclick="alternarLista('conceptos')">
+        <span>Conceptos Rápidos (Haz clic para mostrar u ocultar)</span>
+        <span style="font-size: 0.8rem; color: var(--primary);">▼</span>
     </p>
 
     <ul id="conceptos" class="interactivo oculto">
-        <li onclick="resaltarElemento(this)">Álgebra: Manipulación de símbolos y ecuaciones.</li>
-        <li onclick="resaltarElemento(this)">Geometría: Estudio de las propiedades de figuras y espacios.</li>
-        <li onclick="resaltarElemento(this)">Cálculo: Análisis del cambio y del movimiento.</li>
-        <li onclick="resaltarElemento(this)">Estadística: Análisis y tratamiento de datos.</li>
+        <li onclick="resaltarElemento(event, this)">Álgebra: Manipulación de símbolos y ecuaciones.</li>
+        <li onclick="resaltarElemento(event, this)">Geometría: Estudio de las propiedades de figuras y espacios.</li>
+        <li onclick="resaltarElemento(event, this)">Cálculo: Análisis del cambio y del movimiento.</li>
+        <li onclick="resaltarElemento(event, this)">Estadística: Análisis y tratamiento de datos.</li>
     </ul>
 
     <!-- Archivo de configuración que contiene el arreglo de entradas -->
@@ -149,7 +268,7 @@
                 contenedorLista.appendChild(li);
             });
         } else {
-            contenedorLista.innerHTML = '<li>No hay entradas publicadas aún.</li>';
+            contenedorLista.innerHTML = '<li style="color: var(--text-muted); text-align: center;">No hay entradas publicadas aún.</li>';
         }
 
         // Funciones de interacción rápida
@@ -163,7 +282,8 @@
             lista.classList.toggle('oculto');
         }
 
-        function resaltarElemento(elemento) {
+        function resaltarElemento(event, elemento) {
+            event.stopPropagation(); // Evita que se colapse la lista al hacer clic en un elemento interno
             elemento.classList.toggle('resaltado');
         }
     </script>

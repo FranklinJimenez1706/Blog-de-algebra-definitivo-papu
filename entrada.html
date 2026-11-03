@@ -3,39 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="titulo-pagina">Cargando... - Blog Matemático</title>
+    <title id="titulo-pagina">Blog Matemático</title>
     <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --accent: #38bdf8;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 20px auto;
-            padding: 10px;
-            color: #222;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 24px;
+            color: var(--text-main);
+            background-color: var(--bg-base);
+            line-height: 1.7;
+            animation: fadeIn 0.4s ease-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         header {
-            border-bottom: 2px solid #1a5276;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 16px;
+            margin-bottom: 30px;
         }
+
         .volver {
-            color: #2980b9;
+            color: var(--primary);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .volver:hover {
+            color: var(--primary-hover);
+            transform: translateX(-4px);
+        }
+
+        #contenido-entrada {
+            background-color: var(--bg-card);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #titulo-entrada {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        #fecha-entrada {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            display: inline-block;
+            background-color: #0f172a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+        }
+
+        /* Estilos aplicados al contenido inyectado dinámicamente */
+        #contenido-entrada h1, 
+        #contenido-entrada h2, 
+        #contenido-entrada h3 {
+            color: var(--primary);
+            margin-top: 1.6em;
+            margin-bottom: 0.6em;
+        }
+
+        #contenido-entrada p {
+            margin-bottom: 1.2rem;
+            color: #cbd5e1;
+        }
+
+        #contenido-entrada ul, 
+        #contenido-entrada ol {
+            padding-left: 20px;
+            margin-bottom: 1.2rem;
+            color: #cbd5e1;
+        }
+
+        #contenido-entrada li {
+            margin-bottom: 0.5rem;
+        }
+
+        #contenido-entrada code {
+            background-color: #0f172a;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #f472b6;
+            border: 1px solid var(--border-color);
+        }
+
+        #contenido-entrada pre {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        #contenido-entrada pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border: none;
+        }
+
+        #contenido-entrada blockquote {
+            border-left: 4px solid var(--primary);
+            margin: 1.2rem 0;
+            padding: 12px 18px;
+            background-color: rgba(56, 189, 248, 0.05);
+            color: #bae6fd;
+            border-radius: 0 8px 8px 0;
+        }
+
+        #contenido-entrada table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        #contenido-entrada th, 
+        #contenido-entrada td {
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        #contenido-entrada th {
+            background-color: #0f172a;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        #contenido-entrada td {
+            color: #cbd5e1;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="volver">← Volver al índice</a>
-        <h1 id="titulo-entrada">Cargando título...</h1>
-        <small id="fecha-entrada"></small>
+        <a class="volver" href="index.html">← Volver al inicio</a>
     </header>
 
-    <main id="contenido-entrada">
-        <p>Cargando contenido...</p>
+    <main>
+        <!-- Elementos requeridos por tu script -->
+        <h1 id="titulo-entrada"></h1>
+        <span id="fecha-entrada"></span>
+        
+        <div id="contenido-entrada">
+            <!-- El contenido dinámico de la entrada se inyectará aquí -->
+        </div>
     </main>
 
+    <!-- Tu script original intacto -->
     <script src="posts.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);

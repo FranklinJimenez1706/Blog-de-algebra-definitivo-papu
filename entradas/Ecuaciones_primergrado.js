@@ -42,7 +42,7 @@ x = 4              # asignación: guarda 4 en x
 x = 4
 </code></pre>
 
-<p>Comprobación: <code>2(4) + 3 = 11</code> ✓</p>
+<p>Comprobación: <code>2(4) + 3 = 11</code> </p>
 
 <h3>El atajo "pasa al otro lado"</h3>
 
@@ -105,7 +105,7 @@ x = 4
 x = 15 / 3 = 5
 </code></pre>
 
-<p>Comprobación: <code>5(5) − 7 = 18</code> y <code>2(5) + 8 = 18</code> ✓</p>
+<p>Comprobación: <code>5(5) − 7 = 18</code> y <code>2(5) + 8 = 18</code> </p>
 
 <p><strong>Con reducción previa:</strong> <code>3x − 5 + x = 6x + 7</code></p>
 
@@ -155,7 +155,7 @@ x = 12 / (−2) = −6
 x = 12
 </code></pre>
 
-<p>Comprobación: <code>12/2 + 12/3 = 6 + 4 = 10</code> ✓</p>
+<p>Comprobación: <code>12/2 + 12/3 = 6 + 4 = 10</code> </p>
 
 <p><strong>Con numeradores:</strong> <code>(x + 1)/4 − (x − 2)/6 = 1</code> → MCM = 12</p>
 
@@ -329,7 +329,7 @@ print(a_celsius(98.6))   # 37.0  → temperatura corporal
 <h3>Ejemplos resueltos</h3>
 
 <p><strong>Fácil:</strong> "El doble de un número, aumentado en 7, es 31."<br>
-<code>2x + 7 = 31</code> → <code>2x = 24</code> → <strong>x = 12</strong>. Validación: 2·12 + 7 = 31 ✓</p>
+<code>2x + 7 = 31</code> → <code>2x = 24</code> → <strong>x = 12</strong>. Validación: 2·12 + 7 = 31 </p>
 
 <p><strong>Medio:</strong> "La suma de tres números consecutivos es 72."<br>
 <code>x + (x + 1) + (x + 2) = 72</code> → <code>3x + 3 = 72</code> → <code>x = 23</code>.<br>
@@ -405,46 +405,7 @@ assert x/3 + x/4 + 10 == x            # Ejemplo 3
 
 <blockquote><strong>Siempre comprueba</strong> sustituyendo en la ecuación original, y en los problemas, contra el enunciado.</blockquote>
 
-<hr>
 
-<h2>7. Actividades de la Semana 9</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Actividad</th>
-      <th>Tipo</th>
-      <th>Cuándo</th>
-      <th>Valor</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>#22</strong> Quiz: Ecuaciones de primer grado</td>
-      <td>Individual</td>
-      <td>Inicio de sesión</td>
-      <td>8%</td>
-    </tr>
-    <tr>
-      <td><strong>#23</strong> Ejercicios: Ecuaciones de primer grado</td>
-      <td>Individual</td>
-      <td>En clase</td>
-      <td>8%</td>
-    </tr>
-    <tr>
-      <td><strong>#24</strong> Proyecto: Blog, Ecuaciones de Primer Grado</td>
-      <td>Individual</td>
-      <td>Arranca hoy</td>
-      <td>8%</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li><strong>#22:</strong> cubre enteras, fraccionarias, con agrupación, con literales y planteamiento.</li>
-  <li><strong>#23:</strong> resuelve cada ecuación con el procedimiento general y comprueba. En los problemas, muestra los <strong>5 pasos</strong> (incluida la validación). Documenta en <strong>Markdown</strong>.</li>
-  <li><strong>#24:</strong> nueva entrada en el Blog de Álgebra con el procedimiento general, un ejemplo de cada tipo y <strong>un problema de planteamiento propio</strong> resuelto y validado. Súbela con <strong>commit + push</strong>. Completa el contenido de la Unidad II que se presenta en la <strong>Semana 10</strong>.</li>
-</ul>
 
 
 <section>`;
